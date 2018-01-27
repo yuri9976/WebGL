@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>行列による座標変換</title>
+		<!-- HTML内のmain.jsより前にminMatrix.jsを読み込むための記述を追加する -->
+		<script src="minMatrix.js"></script>
+		<script src="main.js"></script>
+		<!-- VS（頂点シェーダ）を定義 -->
+		<script id="vs" type="x-shader/x-vertex">
+			attribute vec3 position;
+			attribute vec4 color;
+			uniform   mat4 mvpMatrix;
+			varying   vec4 vColor;
+			void main(){
+				vColor = color;
+				gl_Position = mvpMatrix * vec4(position, 1.0);
+			}
+		</script>
+		<!-- FS（フラグメントシェーダ）を定義 -->
+		<script id="fs" type="x-shader/x-fragment">
+			precision mediump float; // お前は何者？
+			varying   vec4 vColor;
+			void main(){
+//				gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+				gl_FragColor = vColor;
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+</html>

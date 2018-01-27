@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>球体の頂点データ</title>
+		<script src="minMatrix.js"></script>
+		<script src="main.js"></script>
+		<script id="vs" type="x-shader/x-vertex">
+			attribute vec3 position;
+			uniform mat4 mvpMatrix;
+			void main(){
+				gl_Position = mvpMatrix * vec4(position, 1.0);
+			}
+		</script>
+		<script id="fs" type="x-shader/x-fragment">
+			precision mediump float;
+			void main(){
+				gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+</html>
