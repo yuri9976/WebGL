@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>WebGL Demo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../webgl.css" type="text/css">
+  </head>
+
+  <body>
+    <canvas id="glcanvas" width="640" height="480"></canvas>
+  </body>
+
+  <script>
+    main();
+    //
+    // start here
+    //
+    function main() {
+      const canvas = document.querySelector("#glcanvas");
+      // GL コンテキストを初期化
+      const gl = canvas.getContext("webgl");
+      // GL コンテキストを取得できない場合は終了
+      if (!gl) {
+        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+        return;
+      }
+      // クリアカラーを黒色、不透明に設定
+      gl.clearColor(0.0, 0.0, 0.0, 1.0);
+      // Clear the color buffer with specified clear color
+      gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+  </script>
+</html>
