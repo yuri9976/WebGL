@@ -68,34 +68,34 @@ window.onload = function(){
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int16Array(sphereData.i), gl.STATIC_DRAW);
 
 	// 頂点データから頂点座標位置のVBOを生成
-//	var vPositionBuffer2 = gl.createBuffer();
-//	gl.bindBuffer(gl.ARRAY_BUFFER, vPositionBuffer2);
-//	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coneData.vertices), gl.STATIC_DRAW);
+	var vPositionBuffer2 = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vPositionBuffer2);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coneData.vertices), gl.STATIC_DRAW);
 	// VBO（プログラムオブジェクトに頂点データを登録）
-//	var attLocPosition2 = gl.getAttribLocation(programs, 'position');
-//	gl.enableVertexAttribArray(attLocPosition2);
-//	gl.vertexAttribPointer(attLocPosition2, 3, gl.FLOAT, false, 0, 0);
+	var attLocPosition2 = gl.getAttribLocation(programs, 'position');
+	gl.enableVertexAttribArray(attLocPosition2);
+	gl.vertexAttribPointer(attLocPosition2, 3, gl.FLOAT, false, 0, 0);
 
 	// 【New】頂点データから法線VBOを生成して登録
-//	var vNormalBuffer2 = gl.createBuffer();
-//	gl.bindBuffer(gl.ARRAY_BUFFER, vNormalBuffer2);
-//	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coneData.normals), gl.STATIC_DRAW);
-//	var attLocNormal2 = gl.getAttribLocation(programs, 'normal');
-//	gl.enableVertexAttribArray(attLocNormal2);
-//	gl.vertexAttribPointer(attLocNormal2, 3, gl.FLOAT, false, 0, 0);
+	var vNormalBuffer2 = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vNormalBuffer2);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coneData.normals), gl.STATIC_DRAW);
+	var attLocNormal2 = gl.getAttribLocation(programs, 'normal');
+	gl.enableVertexAttribArray(attLocNormal2);
+	gl.vertexAttribPointer(attLocNormal2, 3, gl.FLOAT, false, 0, 0);
 
 	// 頂点データから頂点色のVBOを生成
-//	var vColorBuffer2 = gl.createBuffer(); 
-//	gl.bindBuffer(gl.ARRAY_BUFFER, vColorBuffer2);
-//	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sphereData.c), gl.STATIC_DRAW);
-//	var attLocColor2 = gl.getAttribLocation(programs, 'color');
-//	gl.enableVertexAttribArray(attLocColor2);
-//	gl.vertexAttribPointer(attLocColor2, 4, gl.FLOAT, false, 0, 0);
+	var vColorBuffer2 = gl.createBuffer(); 
+	gl.bindBuffer(gl.ARRAY_BUFFER, vColorBuffer2);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sphereData.c), gl.STATIC_DRAW);
+	var attLocColor2 = gl.getAttribLocation(programs, 'color');
+	gl.enableVertexAttribArray(attLocColor2);
+	gl.vertexAttribPointer(attLocColor2, 4, gl.FLOAT, false, 0, 0);
 	
 	// インデックスバッファの生成
-//	var indexBuffer2 = gl.createBuffer();
-//	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer2);
-//	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int16Array(coneData.indices), gl.STATIC_DRAW);
+	var indexBuffer2 = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer2);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int16Array(coneData.indices), gl.STATIC_DRAW);
 
 	// 行列
 	var mat = new matIV();
@@ -177,7 +177,7 @@ window.onload = function(){
 		
 		//  インデックスバッファを用いるのでdrawArrayではなくdrawElements
 		gl.drawElements(gl.TRIANGLES, sphereData.i.length, gl.UNSIGNED_SHORT, 0);
-//		gl.drawElements(gl.TRIANGLES, coneData.indices.length, gl.UNSIGNED_SHORT, 0);
+		gl.drawElements(gl.TRIANGLES, coneData.indices.length, gl.UNSIGNED_SHORT, 0);
 		gl.flush();
 
 		// 次の再描画の前にアニメーションを更新
