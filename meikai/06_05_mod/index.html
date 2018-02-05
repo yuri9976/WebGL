@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>拡散光の実装</title>
+		<script src="minMatrix.js"></script>
+		<script src="main.js"></script>
+		<script id="vs" type="x-shader/x-vertex">
+			attribute vec3 position; // 頂点属性：頂点座標位置
+			attribute vec4 color;    // 頂点属性：頂点色
+			attribute vec3 normal;		// 頂点属性：頂点法線
+			uniform mat4 mvpMatrix;
+			uniform mat4 invMatrix;
+			uniform vec3 lightDirection;
+			varying vec4 vColor;     // フラグメントシェーダへ色を渡す
+			void main(){
+				// 【New】平行光源の向きを逆行列で修正
+				vec3 invLight = (invMatrix * vec4(lightDirection, 1.0)).xyz;
+				// 拡散光の強度を算出
+				float diff = clamp(dot(normalize(invLight), normal), 0.1, 1.0);
+				// varying変数に頂点色を代入
+				vColor = vec4(color.rgb * diff, color.a);
+				//vColor = color;
+				gl_Position = mvpMatrix * vec4(position, 1.0);
+			}
+		</script>
+		<script id="fs" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 vColor;     // 頂点シェーダから色を受け取る
+			void main(){
+				// 最終的に出力する色を頂点色にする
+				gl_FragColor = vColor;
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+</html>
