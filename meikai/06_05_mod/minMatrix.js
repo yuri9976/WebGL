@@ -479,8 +479,8 @@ function cube(side, color){
 	return {p : pos, n : nor, c : col, t : st, i : idx};
 }
 
-function cone () {
-  var sides = 20;
+function cone (x, y) {
+  var sides = 64;
   var height = 1.0;
   var stepTheta = 2 * Math.PI / sides;
   var verticesPerCap = 9 * sides;
@@ -492,17 +492,17 @@ function cone () {
   // Bottom Cap
   theta = 0;
   for (; i < verticesPerCap; i += 9) {
-    vertices[i    ] = Math.cos(theta);
-    vertices[i + 1] = -height;
+    vertices[i    ] = Math.cos(theta)-x;
+    vertices[i + 1] = height-y;
     vertices[i + 2] = Math.sin(theta);
     theta -= stepTheta;
 
-    vertices[i + 3] = 0.0;
-    vertices[i + 4] = -height;
+    vertices[i + 3] = 0.0-x;
+    vertices[i + 4] = height-y;
     vertices[i + 5] = 0.0;
 
-    vertices[i + 6] = Math.cos(theta);
-    vertices[i + 7] = -height;
+    vertices[i + 6] = Math.cos(theta)-x;
+    vertices[i + 7] = height-y;
     vertices[i + 8] = Math.sin(theta);
   }
 
@@ -519,7 +519,7 @@ function cone () {
 
     // Top
     vertices[i++] = 0.0;
-    vertices[i++] = height;
+    vertices[i++] = -height;
     vertices[i++] = 0.0;
   }
 
